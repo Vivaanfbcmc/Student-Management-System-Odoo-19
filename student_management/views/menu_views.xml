@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_student_root" name="Student Management" sequence="10" groups="student_management.group_student,student_management.group_teacher,student_management.group_librarian,student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_students" name="Students" parent="menu_student_root" action="action_student_list" sequence="10" groups="student_management.group_student,student_management.group_teacher,student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_classes" name="Classes" parent="menu_student_root" action="action_school_class" sequence="20" groups="student_management.group_student,student_management.group_teacher,student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_timetable_student" name="My Timetable" parent="menu_student_root" action="action_timetable_student" sequence="30" groups="student_management.group_student"/>
+
+    <menuitem id="menu_timetable_teacher" name="My Schedule" parent="menu_student_root" action="action_timetable_teacher" sequence="30" groups="student_management.group_teacher"/>
+
+    <menuitem id="menu_timetable_admin" name="Timetables" parent="menu_student_root" action="action_school_timetable_admin" sequence="30" groups="student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_library" name="Library" parent="menu_student_root" action="action_library_books" sequence="40" groups="student_management.group_student,student_management.group_teacher,student_management.group_librarian,student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_subjects" name="Subjects" parent="menu_student_root" action="action_subject_list" sequence="50" groups="student_management.group_school_admin"/>
+
+    <menuitem id="menu_teachers" name="Teachers" parent="menu_student_root" action="action_teachers" sequence="60" groups="student_management.group_principal,student_management.group_school_admin"/>
+
+    <menuitem id="menu_lecture_logs_student" name="Lecture Logs" parent="menu_student_root" action="action_timetable_log_student" sequence="35" groups="student_management.group_student"/>
+
+<menuitem id="menu_lecture_logs_teacher" name="Lecture Logs" parent="menu_student_root" action="action_timetable_log_teacher" sequence="35" groups="student_management.group_teacher"/>
+
+<menuitem id="menu_lecture_logs_admin" name="Lecture Logs" parent="menu_student_root" action="action_timetable_log" sequence="35" groups="student_management.group_principal,student_management.group_school_admin"/>
+</odoo>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- PRIMARY SUBJECTS -->
+    
+    <record id="subject_english" model="student.subject">
+        <field name="name">English</field>
+        <field name="code">ENG</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_hindi" model="student.subject">
+        <field name="name">Hindi</field>
+        <field name="code">HIN</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_mathematics" model="student.subject">
+        <field name="name">Mathematics</field>
+        <field name="code">MATH</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_evs" model="student.subject">
+        <field name="name">Environmental Studies</field>
+        <field name="code">EVS</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_third_language" model="student.subject">
+        <field name="name">Third Language</field>
+        <field name="code">TL</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <!-- MIDDLE SCHOOL -->
+
+    <record id="subject_science" model="student.subject">
+        <field name="name">Science</field>
+        <field name="code">SCI</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_social_science" model="student.subject">
+        <field name="name">Social Science</field>
+        <field name="code">SOC</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_computer_science" model="student.subject">
+        <field name="name">Computer Science</field>
+        <field name="code">CS</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_information_technology" model="student.subject">
+        <field name="name">Information Technology</field>
+        <field name="code">IT</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_sanskrit" model="student.subject">
+        <field name="name">Sanskrit</field>
+        <field name="code">SAN</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <!-- SCIENCE STREAM -->
+
+    <record id="subject_physics" model="student.subject">
+        <field name="name">Physics</field>
+        <field name="code">PHY</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_chemistry" model="student.subject">
+        <field name="name">Chemistry</field>
+        <field name="code">CHE</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_biology" model="student.subject">
+        <field name="name">Biology</field>
+        <field name="code">BIO</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <!-- COMMERCE STREAM -->
+
+    <record id="subject_accountancy" model="student.subject">
+        <field name="name">Accountancy</field>
+        <field name="code">ACC</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_business_studies" model="student.subject">
+        <field name="name">Business Studies</field>
+        <field name="code">BST</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_economics" model="student.subject">
+        <field name="name">Economics</field>
+        <field name="code">ECO</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_informatics_practices" model="student.subject">
+        <field name="name">Informatics Practices</field>
+        <field name="code">IP</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <!-- HUMANITIES STREAM -->
+
+    <record id="subject_history" model="student.subject">
+        <field name="name">History</field>
+        <field name="code">HIS</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_political_science" model="student.subject">
+        <field name="name">Political Science</field>
+        <field name="code">POL</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_geography" model="student.subject">
+        <field name="name">Geography</field>
+        <field name="code">GEO</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_sociology" model="student.subject">
+        <field name="name">Sociology</field>
+        <field name="code">SOCIO</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <record id="subject_psychology" model="student.subject">
+        <field name="name">Psychology</field>
+        <field name="code">PSY</field>
+        <field name="max_marks">100</field>
+    </record>
+
+    <!-- EXTRA -->
+
+    <record id="subject_sports" model="student.subject">
+        <field name="name">Sports</field>
+        <field name="code">SPORT</field>
+        <field name="max_marks">100</field>
+    </record>
+
+</odoo>

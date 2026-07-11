@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CLASS 1 -->
+    <record id="class_1" model="school.class">
+        <field name="grade">1</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_evs'))]"/>
+    </record>
+    <record id="class_1_div_a" model="school.class.division"><field name="class_id" ref="class_1"/><field name="name">A</field></record>
+    <record id="class_1_div_b" model="school.class.division"><field name="class_id" ref="class_1"/><field name="name">B</field></record>
+    <record id="class_1_div_c" model="school.class.division"><field name="class_id" ref="class_1"/><field name="name">C</field></record>
+    <record id="class_1_div_d" model="school.class.division"><field name="class_id" ref="class_1"/><field name="name">D</field></record>
+
+    <!-- CLASS 2 -->
+    <record id="class_2" model="school.class">
+        <field name="grade">2</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_evs'))]"/>
+    </record>
+    <record id="class_2_div_a" model="school.class.division"><field name="class_id" ref="class_2"/><field name="name">A</field></record>
+    <record id="class_2_div_b" model="school.class.division"><field name="class_id" ref="class_2"/><field name="name">B</field></record>
+    <record id="class_2_div_c" model="school.class.division"><field name="class_id" ref="class_2"/><field name="name">C</field></record>
+    <record id="class_2_div_d" model="school.class.division"><field name="class_id" ref="class_2"/><field name="name">D</field></record>
+
+    <!-- CLASS 3 -->
+    <record id="class_3" model="school.class">
+        <field name="grade">3</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_evs')),
+            (4, ref('student_management.subject_third_language'))]"/>
+    </record>
+    <record id="class_3_div_a" model="school.class.division"><field name="class_id" ref="class_3"/><field name="name">A</field></record>
+    <record id="class_3_div_b" model="school.class.division"><field name="class_id" ref="class_3"/><field name="name">B</field></record>
+    <record id="class_3_div_c" model="school.class.division"><field name="class_id" ref="class_3"/><field name="name">C</field></record>
+    <record id="class_3_div_d" model="school.class.division"><field name="class_id" ref="class_3"/><field name="name">D</field></record>
+
+    <!-- CLASS 4 -->
+    <record id="class_4" model="school.class">
+        <field name="grade">4</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_evs')),
+            (4, ref('student_management.subject_third_language'))]"/>
+    </record>
+    <record id="class_4_div_a" model="school.class.division"><field name="class_id" ref="class_4"/><field name="name">A</field></record>
+    <record id="class_4_div_b" model="school.class.division"><field name="class_id" ref="class_4"/><field name="name">B</field></record>
+    <record id="class_4_div_c" model="school.class.division"><field name="class_id" ref="class_4"/><field name="name">C</field></record>
+    <record id="class_4_div_d" model="school.class.division"><field name="class_id" ref="class_4"/><field name="name">D</field></record>
+
+    <!-- CLASS 5 -->
+    <record id="class_5" model="school.class">
+        <field name="grade">5</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_evs')),
+            (4, ref('student_management.subject_third_language'))]"/>
+    </record>
+    <record id="class_5_div_a" model="school.class.division"><field name="class_id" ref="class_5"/><field name="name">A</field></record>
+    <record id="class_5_div_b" model="school.class.division"><field name="class_id" ref="class_5"/><field name="name">B</field></record>
+    <record id="class_5_div_c" model="school.class.division"><field name="class_id" ref="class_5"/><field name="name">C</field></record>
+    <record id="class_5_div_d" model="school.class.division"><field name="class_id" ref="class_5"/><field name="name">D</field></record>
+
+    <!-- CLASS 6 -->
+    <record id="class_6" model="school.class">
+        <field name="grade">6</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_sanskrit')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_science')),
+            (4, ref('student_management.subject_social_science')),
+            (4, ref('student_management.subject_computer_science'))]"/>
+    </record>
+    <record id="class_6_div_a" model="school.class.division"><field name="class_id" ref="class_6"/><field name="name">A</field></record>
+    <record id="class_6_div_b" model="school.class.division"><field name="class_id" ref="class_6"/><field name="name">B</field></record>
+    <record id="class_6_div_c" model="school.class.division"><field name="class_id" ref="class_6"/><field name="name">C</field></record>
+    <record id="class_6_div_d" model="school.class.division"><field name="class_id" ref="class_6"/><field name="name">D</field></record>
+
+    <!-- CLASS 7 -->
+    <record id="class_7" model="school.class">
+        <field name="grade">7</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_sanskrit')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_science')),
+            (4, ref('student_management.subject_social_science')),
+            (4, ref('student_management.subject_computer_science'))]"/>
+    </record>
+    <record id="class_7_div_a" model="school.class.division"><field name="class_id" ref="class_7"/><field name="name">A</field></record>
+    <record id="class_7_div_b" model="school.class.division"><field name="class_id" ref="class_7"/><field name="name">B</field></record>
+    <record id="class_7_div_c" model="school.class.division"><field name="class_id" ref="class_7"/><field name="name">C</field></record>
+    <record id="class_7_div_d" model="school.class.division"><field name="class_id" ref="class_7"/><field name="name">D</field></record>
+
+    <!-- CLASS 8 -->
+    <record id="class_8" model="school.class">
+        <field name="grade">8</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_sanskrit')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_science')),
+            (4, ref('student_management.subject_social_science')),
+            (4, ref('student_management.subject_computer_science'))]"/>
+    </record>
+    <record id="class_8_div_a" model="school.class.division"><field name="class_id" ref="class_8"/><field name="name">A</field></record>
+    <record id="class_8_div_b" model="school.class.division"><field name="class_id" ref="class_8"/><field name="name">B</field></record>
+    <record id="class_8_div_c" model="school.class.division"><field name="class_id" ref="class_8"/><field name="name">C</field></record>
+    <record id="class_8_div_d" model="school.class.division"><field name="class_id" ref="class_8"/><field name="name">D</field></record>
+
+    <!-- CLASS 9 -->
+    <record id="class_9" model="school.class">
+        <field name="grade">9</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_science')),
+            (4, ref('student_management.subject_social_science')),
+            (4, ref('student_management.subject_information_technology'))]"/>
+    </record>
+    <record id="class_9_div_a" model="school.class.division"><field name="class_id" ref="class_9"/><field name="name">A</field></record>
+    <record id="class_9_div_b" model="school.class.division"><field name="class_id" ref="class_9"/><field name="name">B</field></record>
+    <record id="class_9_div_c" model="school.class.division"><field name="class_id" ref="class_9"/><field name="name">C</field></record>
+    <record id="class_9_div_d" model="school.class.division"><field name="class_id" ref="class_9"/><field name="name">D</field></record>
+
+    <!-- CLASS 10 -->
+    <record id="class_10" model="school.class">
+        <field name="grade">10</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_science')),
+            (4, ref('student_management.subject_social_science')),
+            (4, ref('student_management.subject_information_technology'))]"/>
+    </record>
+    <record id="class_10_div_a" model="school.class.division"><field name="class_id" ref="class_10"/><field name="name">A</field></record>
+    <record id="class_10_div_b" model="school.class.division"><field name="class_id" ref="class_10"/><field name="name">B</field></record>
+    <record id="class_10_div_c" model="school.class.division"><field name="class_id" ref="class_10"/><field name="name">C</field></record>
+    <record id="class_10_div_d" model="school.class.division"><field name="class_id" ref="class_10"/><field name="name">D</field></record>
+
+    <!-- CLASS 11 -->
+    <record id="class_11" model="school.class">
+        <field name="grade">11</field>
+    </record>
+    <record id="class_11_div_a" model="school.class.division">
+        <field name="class_id" ref="class_11"/>
+        <field name="name">A</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_physics')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_chemistry')),
+            (4, ref('student_management.subject_biology')),
+            (4, ref('student_management.subject_computer_science'))]"/>
+    </record>
+    <record id="class_11_div_b" model="school.class.division">
+        <field name="class_id" ref="class_11"/>
+        <field name="name">B</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_accountancy')),
+            (4, ref('student_management.subject_business_studies')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_economics')),
+            (4, ref('student_management.subject_informatics_practices'))]"/>
+    </record>
+    <record id="class_11_div_c" model="school.class.division">
+        <field name="class_id" ref="class_11"/>
+        <field name="name">C</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_hindi')),
+            (4, ref('student_management.subject_history')),
+            (4, ref('student_management.subject_political_science')),
+            (4, ref('student_management.subject_geography')),
+            (4, ref('student_management.subject_sociology'))]"/>
+    </record>
+
+    <!-- CLASS 12 -->
+    <record id="class_12" model="school.class">
+        <field name="grade">12</field>
+    </record>
+    <record id="class_12_div_a" model="school.class.division">
+        <field name="class_id" ref="class_12"/>
+        <field name="name">A</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_physics')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_chemistry')),
+            (4, ref('student_management.subject_biology')),
+            (4, ref('student_management.subject_computer_science'))]"/>
+    </record>
+    <record id="class_12_div_b" model="school.class.division">
+        <field name="class_id" ref="class_12"/>
+        <field name="name">B</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_accountancy')),
+            (4, ref('student_management.subject_business_studies')),
+            (4, ref('student_management.subject_mathematics')),
+            (4, ref('student_management.subject_economics')),
+            (4, ref('student_management.subject_informatics_practices'))]"/>
+    </record>
+    <record id="class_12_div_c" model="school.class.division">
+        <field name="class_id" ref="class_12"/>
+        <field name="name">C</field>
+        <field name="subject_ids" eval="[
+            (4, ref('student_management.subject_english')),
+            (4, ref('student_management.subject_history')),
+            (4, ref('student_management.subject_political_science')),
+            (4, ref('student_management.subject_geography')),
+            (4, ref('student_management.subject_sociology')),
+            (4, ref('student_management.subject_psychology'))]"/>
+    </record>
+
+</odoo>

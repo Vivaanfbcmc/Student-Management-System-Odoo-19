@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- TEACHER LIST VIEW -->
+    <record id="view_teacher_list" model="ir.ui.view">
+        <field name="name">school.teacher.list</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <list string="Teachers"
+                  decoration-muted="active == False">
+                <field name="employee_id" optional="show"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="post"/>
+                <field name="subject_ids" widget="many2many_tags"/>
+                <field name="class_count" string="Classes"/>
+                <field name="is_library_member" widget="boolean_toggle"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- TEACHER FORM VIEW -->
+    <record id="view_teacher_form" model="ir.ui.view">
+        <field name="name">school.teacher.form</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Teacher">
+                <sheet>
+                    <div class="oe_title">
+                        <field name="photo" widget="image" class="oe_avatar"
+                               options="{'preview_image': 'photo', 'size': [90, 90]}"/>
+                        <h1>
+                            <field name="name" required="1" placeholder="Teacher Full Name"/>
+                        </h1>
+                        <h4>
+                            <field name="employee_id" readonly="1"/>
+                        </h4>
+                    </div>
+
+                    <group string="Personal Information">
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="age"   readonly="1"/>
+                            <field name="email" placeholder="teacher@school.com"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="joining_date"/>
+                            <field name="post"   required="1"/>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="is_library_member" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group string="Teaching Details">
+                        <field name="subject_ids"
+                               widget="many2many_tags"
+                               nolabel="1"
+                               options="{'no_create': True}"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Classes" name="classes">
+                            <field name="class_subject_ids" readonly="1">
+                                <list>
+                                    <field name="class_id" string="Class"/>
+                                    <field name="division_id" string="Division"/>
+                                    <field name="subject_id" string="Subject"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Students" name="students">
+                            <field name="student_ids" readonly="1">
+                                <list>
+                                    <field name="roll_number"/>
+                                    <field name="name"/>
+                                    <field name="class_id"/>
+                                    <field name="email"/>
+                                    <field name="total_percentage"/>
+                                    <field name="result"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_teacher_search" model="ir.ui.view">
+        <field name="name">school.teacher.search</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <search string="Search Teachers">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="subject_ids" string="Subject"/>
+                <field name="post"/>
+                <separator/>
+                <filter name="class_teacher" string="Class Teachers"
+                        domain="[('post', '=', 'class_teacher')]"/>
+                <filter name="active"   string="Active"
+                        domain="[('active', '=', True)]"/>
+                <filter name="archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter name="group_post"    string="Post"
+                        context="{'group_by': 'post'}"/>
+                <filter name="group_subject" string="Subject"
+                        context="{'group_by': 'subject_ids'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_teachers" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">school.teacher</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_teacher_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_teacher_form')}),
+        ]"/>
+        <field name="search_view_id" ref="view_teacher_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add your first teacher!</p>
+        </field>
+    </record>
+
+</odoo>

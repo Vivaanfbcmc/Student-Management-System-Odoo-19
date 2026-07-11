@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ADMIN FORM VIEW -->
+    <record id="view_school_timetable_form" model="ir.ui.view">
+        <field name="name">school.timetable.form</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <form string="Timetable">
+                <sheet>
+                    <group>
+                        <group string="Timetable Info">
+                            <field name="class_id"/>
+                            <field name="division_id" options="{'no_create': True}"/>
+                            <field name="day"/>
+                        </group>
+                        <group string="Summary">
+                            <field name="slot_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Slots">
+                            <field name="slot_ids">
+                                <list editable="bottom">
+                                    <field name="slot_number"/>
+                                    <field name="time_start" string="Start (float)"/>
+                                    <field name="time_end"   string="End (float)"/>
+                                    <field name="time_start_display" string="Start" readonly="1"/>
+                                    <field name="time_end_display"   string="End"   readonly="1"/>
+                                    <field name="slot_type"/>
+                                    <field name="subject_id" options="{'no_create': True}"/>
+                                    <field name="teacher_id" options="{'no_create': True}"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ADMIN LIST VIEW -->
+    <record id="view_school_timetable_list" model="ir.ui.view">
+        <field name="name">school.timetable.list</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <list string="Timetables">
+                <field name="class_id"/>
+                <field name="division_id"/>
+                <field name="day"/>
+                <field name="slot_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ADMIN SEARCH VIEW -->
+    <record id="view_school_timetable_search" model="ir.ui.view">
+        <field name="name">school.timetable.search</field>
+        <field name="model">school.timetable</field>
+        <field name="arch" type="xml">
+            <search string="Search Timetables">
+                <field name="class_id"/>
+                <field name="division_id"/>
+                <field name="day"/>
+                <separator/>
+                <filter name="group_class"    string="Class"    context="{'group_by': 'class_id'}"/>
+                <filter name="group_division" string="Division" context="{'group_by': 'division_id'}"/>
+                <filter name="group_day"      string="Day"      context="{'group_by': 'day'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- SLOT FORM VIEW (opened when clicking a kanban card) -->
+    <record id="view_timetable_slot_form" model="ir.ui.view">
+        <field name="name">school.timetable.slot.form</field>
+        <field name="model">school.timetable.slot</field>
+        <field name="arch" type="xml">
+            <form string="Slot Detail" create="false" delete="false">
+                <header>
+                    <button name="action_log_today"
+                            string="Log Today's Topic"
+                            type="object"
+                            class="btn-primary"
+                            invisible="slot_type != 'lecture'"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Slot Info">
+                            <field name="time_start_display" string="Start"    readonly="1"/>
+                            <field name="time_end_display"   string="End"      readonly="1"/>
+                            <field name="slot_type"          readonly="1"/>
+                            <field name="subject_id"         readonly="1"/>
+                            <field name="teacher_id"         readonly="1"/>
+                        </group>
+                        <group string="Class">
+                            <field name="class_id"    readonly="1"/>
+                            <field name="division_id" readonly="1"/>
+                            <field name="day"         readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lecture Logs" invisible="slot_type != 'lecture'">
+                            <field name="log_ids" readonly="0">
+                                <list default_order="date desc" editable="bottom">
+                                    <field name="date" widget="date"/>
+                                    <field name="topics_covered"/>
+                                    <field name="remarks"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SLOT KANBAN — STUDENT -->
+    <record id="view_timetable_slot_kanban_student" model="ir.ui.view">
+        <field name="name">school.timetable.slot.kanban.student</field>
+        <field name="model">school.timetable.slot</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="day"
+                    class="o_kanban_small_column"
+                    on_create="false"
+                    group_create="false"
+                    group_delete="false"
+                    group_edit="false">
+                <field name="slot_number"/>
+                <field name="slot_type"/>
+                <field name="time_start_display"/>
+                <field name="time_end_display"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="day"/>
+                <templates>
+                    <t t-name="card" open="1">
+                        <div t-attf-class="o_kanban_card_header
+                            #{ record.slot_type.raw_value === 'lunch_break' ? 'bg-warning-subtle' :
+                               record.slot_type.raw_value === 'short_break' ? 'bg-info-subtle' :
+                               record.slot_type.raw_value === 'sport'       ? 'bg-success-subtle' :
+                               record.slot_type.raw_value === 'free'        ? 'bg-secondary-subtle' :
+                               'bg-primary-subtle' }">
+                            <div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                <small class="fw-bold">
+                                    <t t-esc="record.time_start_display.value"/>–<t t-esc="record.time_end_display.value"/>
+                                </small>
+                                <small class="text-muted">Slot <t t-esc="record.slot_number.value"/></small>
+                            </div>
+                        </div>
+                        <div class="o_kanban_card_content p-2">
+                            <t t-if="record.slot_type.raw_value === 'lecture'">
+                                <div class="fw-semibold"><t t-esc="record.subject_id.value || '—'"/></div>
+                                <small class="text-muted"><t t-esc="record.teacher_id.value || ''"/></small>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'lunch_break'">
+                                <div class="fw-semibold text-warning">🍽 Lunch Break</div>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'short_break'">
+                                <div class="fw-semibold text-info">☕ Short Break</div>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'sport'">
+                                <div class="fw-semibold text-success">⚽ Sports</div>
+                            </t>
+                            <t t-else="">
+                                <div class="fw-semibold text-secondary">Free Period</div>
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- SLOT KANBAN — TEACHER -->
+    <record id="view_timetable_slot_kanban_teacher" model="ir.ui.view">
+        <field name="name">school.timetable.slot.kanban.teacher</field>
+        <field name="model">school.timetable.slot</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="day"
+                    class="o_kanban_small_column"
+                    on_create="false"
+                    group_create="false"
+                    group_delete="false"
+                    group_edit="false">
+                <field name="slot_number"/>
+                <field name="slot_type"/>
+                <field name="time_start_display"/>
+                <field name="time_end_display"/>
+                <field name="subject_id"/>
+                <field name="class_id"/>
+                <field name="division_id"/>
+                <field name="day"/>
+                <templates>
+                    <t t-name="card" open="1">
+                        <div t-attf-class="o_kanban_card_header
+                            #{ record.slot_type.raw_value === 'lunch_break' ? 'bg-warning-subtle' :
+                               record.slot_type.raw_value === 'short_break' ? 'bg-info-subtle' :
+                               record.slot_type.raw_value === 'sport'       ? 'bg-success-subtle' :
+                               'bg-primary-subtle' }">
+                            <div class="d-flex justify-content-between align-items-center px-2 py-1">
+                                <small class="fw-bold">
+                                    <t t-esc="record.time_start_display.value"/>–<t t-esc="record.time_end_display.value"/>
+                                </small>
+                                <small class="text-muted">Slot <t t-esc="record.slot_number.value"/></small>
+                            </div>
+                        </div>
+                        <div class="o_kanban_card_content p-2">
+                            <t t-if="record.slot_type.raw_value === 'lecture'">
+                                <div class="fw-semibold">
+                                    <t t-esc="record.class_id.value || '—'"/> – <t t-esc="record.division_id.value || ''"/>
+                                </div>
+                                <small class="text-muted"><t t-esc="record.subject_id.value || ''"/></small>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'lunch_break'">
+                                <div class="fw-semibold text-warning">🍽 Lunch Break</div>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'short_break'">
+                                <div class="fw-semibold text-info">☕ Short Break</div>
+                            </t>
+                            <t t-elif="record.slot_type.raw_value === 'sport'">
+                                <div class="fw-semibold text-success">⚽ Sports</div>
+                            </t>
+                            <t t-else="">
+                                <div class="fw-semibold text-secondary">Free Period</div>
+                            </t>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- SLOT LIST VIEW (fallback) -->
+    <record id="view_timetable_slot_list" model="ir.ui.view">
+        <field name="name">school.timetable.slot.list</field>
+        <field name="model">school.timetable.slot</field>
+        <field name="arch" type="xml">
+            <list string="Timetable Slots">
+                <field name="day"/>
+                <field name="slot_number"/>
+                <field name="time_start_display" string="Start"/>
+                <field name="time_end_display"   string="End"/>
+                <field name="slot_type"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="class_id"/>
+                <field name="division_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- SLOT SEARCH VIEW -->
+    <record id="view_timetable_slot_search" model="ir.ui.view">
+        <field name="name">school.timetable.slot.search</field>
+        <field name="model">school.timetable.slot</field>
+        <field name="arch" type="xml">
+            <search string="Search Slots">
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="class_id"/>
+                <field name="division_id"/>
+                <separator/>
+                <filter name="filter_lecture"     string="Lectures"     domain="[('slot_type','=','lecture')]"/>
+                <filter name="filter_sport"       string="Sport"        domain="[('slot_type','=','sport')]"/>
+                <filter name="filter_short_break" string="Short Breaks" domain="[('slot_type','=','short_break')]"/>
+                <filter name="filter_lunch"       string="Lunch Breaks" domain="[('slot_type','=','lunch_break')]"/>
+                <separator/>
+                <filter name="group_day" string="Day" context="{'group_by': 'day'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTIONS -->
+    <record id="action_school_timetable_admin" model="ir.actions.act_window">
+        <field name="name">Timetables</field>
+        <field name="res_model">school.timetable</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'list','view_id':ref('view_school_timetable_list')}),
+            (0,0,{'view_mode':'form','view_id':ref('view_school_timetable_form')})]"/>
+        <field name="search_view_id" ref="view_school_timetable_search"/>
+    </record>
+
+    <record id="action_timetable_student" model="ir.actions.act_window">
+        <field name="name">My Timetable</field>
+        <field name="res_model">school.timetable.slot</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'kanban','view_id':ref('view_timetable_slot_kanban_student')}),
+            (0,0,{'view_mode':'list',  'view_id':ref('view_timetable_slot_list')}),
+            (0,0,{'view_mode':'form',  'view_id':ref('view_timetable_slot_form')})]"/>
+        <field name="search_view_id" ref="view_timetable_slot_search"/>
+        <field name="context">{'orderby': 'day_order asc'}</field>
+    </record>
+
+    <record id="action_timetable_teacher" model="ir.actions.act_window">
+        <field name="name">My Schedule</field>
+        <field name="res_model">school.timetable.slot</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'kanban','view_id':ref('view_timetable_slot_kanban_teacher')}),
+            (0,0,{'view_mode':'list',  'view_id':ref('view_timetable_slot_list')}),
+            (0,0,{'view_mode':'form',  'view_id':ref('view_timetable_slot_form')})]"/>
+        <field name="search_view_id" ref="view_timetable_slot_search"/>
+        <field name="context">{'orderby': 'day_order asc'}</field>
+    </record>
+
+</odoo>

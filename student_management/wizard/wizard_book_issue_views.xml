@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_book_issue_wizard_form" model="ir.ui.view">
+        <field name="name">library.book.issue.wizard.form</field>
+        <field name="model">library.book.issue.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Issue a Book">
+                <group string="Member">
+                    <group>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="member_type" readonly="1"/>
+                        <field name="student_class" readonly="1"/>
+                    </group>
+                </group>
+
+                <group string="Book">
+                    <group>
+                        <field name="book_id" options="{'no_create': True}"
+                               readonly="context.get('default_book_id')"/>
+                        <field name="book_grade" readonly="1"/>
+                        <field name="book_subject" readonly="1"/>
+                        <field name="available_copies" readonly="1"/>
+                    </group>
+                </group>
+
+                <div class="alert alert-success" role="alert"
+                     invisible="not is_eligible or not book_id">
+                    <field name="eligibility_message" readonly="1" nolabel="1"/>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                     invisible="is_eligible or not book_id">
+                    <field name="eligibility_message" readonly="1" nolabel="1"/>
+                </div>
+
+                <group string="Dates">
+                    <group>
+                        <field name="issue_date" required="1"/>
+                        <field name="due_date" required="1"/>
+                    </group>
+                </group>
+
+                <footer>
+                    <button name="action_confirm_issue"
+                            type="object"
+                            string="Issue Book"
+                            class="btn-primary"
+                            invisible="not is_eligible"/>
+                    <button name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_book_issue_wizard" model="ir.actions.act_window">
+        <field name="name">Issue a Book</field>
+        <field name="res_model">library.book.issue.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

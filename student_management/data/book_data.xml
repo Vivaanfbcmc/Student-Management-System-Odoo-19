@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================================================== -->
+    <!-- CLASSES 1 TO 5 -->
+    <!-- ===================================================== -->
+
+    <!-- CLASS 1 -->
+    <record id="book_english_1" model="library.book">
+        <field name="name">English Class 1</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">1</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_1" model="library.book">
+        <field name="name">Hindi Class 1</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">1</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_1" model="library.book">
+        <field name="name">Mathematics Class 1</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">1</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_evs_1" model="library.book">
+        <field name="name">Environmental Studies Class 1</field>
+        <field name="subject_id" ref="subject_evs"/>
+        <field name="grade">1</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- CLASS 2 -->
+    <record id="book_english_2" model="library.book">
+        <field name="name">English Class 2</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">2</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_2" model="library.book">
+        <field name="name">Hindi Class 2</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">2</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_2" model="library.book">
+        <field name="name">Mathematics Class 2</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">2</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_evs_2" model="library.book">
+        <field name="name">Environmental Studies Class 2</field>
+        <field name="subject_id" ref="subject_evs"/>
+        <field name="grade">2</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- CLASS 3 -->
+    <record id="book_english_3" model="library.book">
+        <field name="name">English Class 3</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">3</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_3" model="library.book">
+        <field name="name">Hindi Class 3</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">3</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_3" model="library.book">
+        <field name="name">Mathematics Class 3</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">3</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_evs_3" model="library.book">
+        <field name="name">Environmental Studies Class 3</field>
+        <field name="subject_id" ref="subject_evs"/>
+        <field name="grade">3</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- CLASS 4 -->
+    <record id="book_english_4" model="library.book">
+        <field name="name">English Class 4</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">4</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_4" model="library.book">
+        <field name="name">Hindi Class 4</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">4</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_4" model="library.book">
+        <field name="name">Mathematics Class 4</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">4</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_evs_4" model="library.book">
+        <field name="name">Environmental Studies Class 4</field>
+        <field name="subject_id" ref="subject_evs"/>
+        <field name="grade">4</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- CLASS 5 -->
+    <record id="book_english_5" model="library.book">
+        <field name="name">English Class 5</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">5</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_5" model="library.book">
+        <field name="name">Hindi Class 5</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">5</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_5" model="library.book">
+        <field name="name">Mathematics Class 5</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">5</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_evs_5" model="library.book">
+        <field name="name">Environmental Studies Class 5</field>
+        <field name="subject_id" ref="subject_evs"/>
+        <field name="grade">5</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASSES 6 TO 8 -->
+    <!-- ===================================================== -->
+
+    <!-- CLASS 6 -->
+    <record id="book_english_6" model="library.book">
+        <field name="name">English Class 6</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_6" model="library.book">
+        <field name="name">Hindi Class 6</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_6" model="library.book">
+        <field name="name">Mathematics Class 6</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_science_6" model="library.book">
+        <field name="name">Science Class 6</field>
+        <field name="subject_id" ref="subject_science"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_social_6" model="library.book">
+        <field name="name">Social Science Class 6</field>
+        <field name="subject_id" ref="subject_social_science"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_cs_6" model="library.book">
+        <field name="name">Computer Science Class 6</field>
+        <field name="subject_id" ref="subject_computer_science"/>
+        <field name="grade">6</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+        <!-- ===================================================== -->
+    <!-- CLASS 7 -->
+    <!-- ===================================================== -->
+
+    <record id="book_english_7" model="library.book">
+        <field name="name">English Class 7</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_7" model="library.book">
+        <field name="name">Hindi Class 7</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_7" model="library.book">
+        <field name="name">Mathematics Class 7</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_science_7" model="library.book">
+        <field name="name">Science Class 7</field>
+        <field name="subject_id" ref="subject_science"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_social_7" model="library.book">
+        <field name="name">Social Science Class 7</field>
+        <field name="subject_id" ref="subject_social_science"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_cs_7" model="library.book">
+        <field name="name">Computer Science Class 7</field>
+        <field name="subject_id" ref="subject_computer_science"/>
+        <field name="grade">7</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 8 -->
+    <!-- ===================================================== -->
+
+    <record id="book_english_8" model="library.book">
+        <field name="name">English Class 8</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_8" model="library.book">
+        <field name="name">Hindi Class 8</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_8" model="library.book">
+        <field name="name">Mathematics Class 8</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_science_8" model="library.book">
+        <field name="name">Science Class 8</field>
+        <field name="subject_id" ref="subject_science"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_social_8" model="library.book">
+        <field name="name">Social Science Class 8</field>
+        <field name="subject_id" ref="subject_social_science"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_cs_8" model="library.book">
+        <field name="name">Computer Science Class 8</field>
+        <field name="subject_id" ref="subject_computer_science"/>
+        <field name="grade">8</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 9 -->
+    <!-- ===================================================== -->
+
+    <record id="book_english_9" model="library.book">
+        <field name="name">English Class 9</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_9" model="library.book">
+        <field name="name">Hindi Class 9</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_9" model="library.book">
+        <field name="name">Mathematics Class 9</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_science_9" model="library.book">
+        <field name="name">Science Class 9</field>
+        <field name="subject_id" ref="subject_science"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_social_9" model="library.book">
+        <field name="name">Social Science Class 9</field>
+        <field name="subject_id" ref="subject_social_science"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_it_9" model="library.book">
+        <field name="name">Information Technology Class 9</field>
+        <field name="subject_id" ref="subject_information_technology"/>
+        <field name="grade">9</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 10 -->
+    <!-- ===================================================== -->
+
+    <record id="book_english_10" model="library.book">
+        <field name="name">English Class 10</field>
+        <field name="subject_id" ref="subject_english"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_hindi_10" model="library.book">
+        <field name="name">Hindi Class 10</field>
+        <field name="subject_id" ref="subject_hindi"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_math_10" model="library.book">
+        <field name="name">Mathematics Class 10</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_science_10" model="library.book">
+        <field name="name">Science Class 10</field>
+        <field name="subject_id" ref="subject_science"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_social_10" model="library.book">
+        <field name="name">Social Science Class 10</field>
+        <field name="subject_id" ref="subject_social_science"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+    <record id="book_it_10" model="library.book">
+        <field name="name">Information Technology Class 10</field>
+        <field name="subject_id" ref="subject_information_technology"/>
+        <field name="grade">10</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">30</field>
+    </record>
+
+        <!-- ===================================================== -->
+    <!-- CLASS 11 SCIENCE -->
+    <!-- ===================================================== -->
+
+    <record id="book_physics_11" model="library.book">
+        <field name="name">Physics Class 11</field>
+        <field name="subject_id" ref="subject_physics"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_chemistry_11" model="library.book">
+        <field name="name">Chemistry Class 11</field>
+        <field name="subject_id" ref="subject_chemistry"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_biology_11" model="library.book">
+        <field name="name">Biology Class 11</field>
+        <field name="subject_id" ref="subject_biology"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_math_11" model="library.book">
+        <field name="name">Mathematics Class 11</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 11 COMMERCE -->
+    <!-- ===================================================== -->
+
+    <record id="book_accountancy_11" model="library.book">
+        <field name="name">Accountancy Class 11</field>
+        <field name="subject_id" ref="subject_accountancy"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_business_11" model="library.book">
+        <field name="name">Business Studies Class 11</field>
+        <field name="subject_id" ref="subject_business_studies"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_economics_11" model="library.book">
+        <field name="name">Economics Class 11</field>
+        <field name="subject_id" ref="subject_economics"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_ip_11" model="library.book">
+        <field name="name">Informatics Practices Class 11</field>
+        <field name="subject_id" ref="subject_informatics_practices"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 11 HUMANITIES -->
+    <!-- ===================================================== -->
+
+    <record id="book_history_11" model="library.book">
+        <field name="name">History Class 11</field>
+        <field name="subject_id" ref="subject_history"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_political_11" model="library.book">
+        <field name="name">Political Science Class 11</field>
+        <field name="subject_id" ref="subject_political_science"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_geography_11" model="library.book">
+        <field name="name">Geography Class 11</field>
+        <field name="subject_id" ref="subject_geography"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_sociology_11" model="library.book">
+        <field name="name">Sociology Class 11</field>
+        <field name="subject_id" ref="subject_sociology"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_psychology_11" model="library.book">
+        <field name="name">Psychology Class 11</field>
+        <field name="subject_id" ref="subject_psychology"/>
+        <field name="grade">11</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 12 SCIENCE -->
+    <!-- ===================================================== -->
+
+    <record id="book_physics_12" model="library.book">
+        <field name="name">Physics Class 12</field>
+        <field name="subject_id" ref="subject_physics"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_chemistry_12" model="library.book">
+        <field name="name">Chemistry Class 12</field>
+        <field name="subject_id" ref="subject_chemistry"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_biology_12" model="library.book">
+        <field name="name">Biology Class 12</field>
+        <field name="subject_id" ref="subject_biology"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_math_12" model="library.book">
+        <field name="name">Mathematics Class 12</field>
+        <field name="subject_id" ref="subject_mathematics"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 12 COMMERCE -->
+    <!-- ===================================================== -->
+
+    <record id="book_accountancy_12" model="library.book">
+        <field name="name">Accountancy Class 12</field>
+        <field name="subject_id" ref="subject_accountancy"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_business_12" model="library.book">
+        <field name="name">Business Studies Class 12</field>
+        <field name="subject_id" ref="subject_business_studies"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_economics_12" model="library.book">
+        <field name="name">Economics Class 12</field>
+        <field name="subject_id" ref="subject_economics"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_ip_12" model="library.book">
+        <field name="name">Informatics Practices Class 12</field>
+        <field name="subject_id" ref="subject_informatics_practices"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <!-- ===================================================== -->
+    <!-- CLASS 12 HUMANITIES -->
+    <!-- ===================================================== -->
+
+    <record id="book_history_12" model="library.book">
+        <field name="name">History Class 12</field>
+        <field name="subject_id" ref="subject_history"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_political_12" model="library.book">
+        <field name="name">Political Science Class 12</field>
+        <field name="subject_id" ref="subject_political_science"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_geography_12" model="library.book">
+        <field name="name">Geography Class 12</field>
+        <field name="subject_id" ref="subject_geography"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_sociology_12" model="library.book">
+        <field name="name">Sociology Class 12</field>
+        <field name="subject_id" ref="subject_sociology"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+    <record id="book_psychology_12" model="library.book">
+        <field name="name">Psychology Class 12</field>
+        <field name="subject_id" ref="subject_psychology"/>
+        <field name="grade">12</field>
+        <field name="edition">2025 Edition</field>
+        <field name="available_copies">25</field>
+    </record>
+
+</odoo>

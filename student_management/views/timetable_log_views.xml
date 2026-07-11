@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="view_timetable_log_form" model="ir.ui.view">
+        <field name="name">school.timetable.log.form</field>
+        <field name="model">school.timetable.log</field>
+        <field name="arch" type="xml">
+            <form string="Lecture Log">
+                <sheet>
+                    <group>
+                        <group string="Slot Info">
+                            <field name="slot_id" options="{'no_create': True}"/>
+                            <field name="subject_id"  readonly="1"/>
+                            <field name="teacher_id"  readonly="1"/>
+                            <field name="class_id"    readonly="1"/>
+                            <field name="division_id" readonly="1"/>
+                            <field name="day"         readonly="1"/>
+                        </group>
+                        <group string="Date">
+                            <field name="date" widget="date"/>
+                        </group>
+                    </group>
+                    <group string="Topics Covered">
+                        <field name="topics_covered" nolabel="1"
+                               placeholder="Enter topics covered in this lecture..."/>
+                    </group>
+                    <group string="Remarks">
+                        <field name="remarks" nolabel="1"
+                               placeholder="Any additional remarks..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- LIST VIEW -->
+    <record id="view_timetable_log_list" model="ir.ui.view">
+        <field name="name">school.timetable.log.list</field>
+        <field name="model">school.timetable.log</field>
+        <field name="arch" type="xml">
+            <list string="Lecture Logs" default_order="date desc">
+                <field name="date"/>
+                <field name="slot_id"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="class_id"/>
+                <field name="division_id"/>
+                <field name="topics_covered"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- CALENDAR VIEW -->
+    <record id="view_timetable_log_calendar" model="ir.ui.view">
+        <field name="name">school.timetable.log.calendar</field>
+        <field name="model">school.timetable.log</field>
+        <field name="arch" type="xml">
+            <calendar string="Lecture Logs"
+                      date_start="date"
+                      mode="month"
+                      color="subject_id"
+                      event_limit="5"
+                      quick_create="false">
+                <field name="subject_id"/>
+                <field name="topics_covered"/>
+                <field name="teacher_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_timetable_log_search" model="ir.ui.view">
+        <field name="name">school.timetable.log.search</field>
+        <field name="model">school.timetable.log</field>
+        <field name="arch" type="xml">
+            <search string="Search Logs">
+                <field name="slot_id"/>
+                <field name="subject_id"/>
+                <field name="teacher_id"/>
+                <field name="date"/>
+                <separator/>
+                <filter name="group_subject" string="Subject" context="{'group_by': 'subject_id'}"/>
+                <filter name="group_date"    string="Date"    context="{'group_by': 'date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ACTION — STUDENT (read only, calendar first) -->
+    <record id="action_timetable_log_student" model="ir.actions.act_window">
+        <field name="name">Lecture Logs</field>
+        <field name="res_model">school.timetable.log</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'calendar','view_id':ref('view_timetable_log_calendar')}),
+            (0,0,{'view_mode':'list',    'view_id':ref('view_timetable_log_list')}),
+            (0,0,{'view_mode':'form',    'view_id':ref('view_timetable_log_form')})]"/>
+        <field name="search_view_id" ref="view_timetable_log_search"/>
+    </record>
+
+    <!-- ACTION — TEACHER (can create logs, calendar first) -->
+    <record id="action_timetable_log_teacher" model="ir.actions.act_window">
+        <field name="name">Lecture Logs</field>
+        <field name="res_model">school.timetable.log</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'calendar','view_id':ref('view_timetable_log_calendar')}),
+            (0,0,{'view_mode':'list',    'view_id':ref('view_timetable_log_list')}),
+            (0,0,{'view_mode':'form',    'view_id':ref('view_timetable_log_form')})]"/>
+        <field name="search_view_id" ref="view_timetable_log_search"/>
+    </record>
+
+    <!-- ACTION — ADMIN -->
+    <record id="action_timetable_log" model="ir.actions.act_window">
+        <field name="name">Lecture Logs</field>
+        <field name="res_model">school.timetable.log</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="view_ids" eval="[(5,0,0),
+            (0,0,{'view_mode':'calendar','view_id':ref('view_timetable_log_calendar')}),
+            (0,0,{'view_mode':'list',    'view_id':ref('view_timetable_log_list')}),
+            (0,0,{'view_mode':'form',    'view_id':ref('view_timetable_log_form')})]"/>
+        <field name="search_view_id" ref="view_timetable_log_search"/>
+    </record>
+
+</odoo>

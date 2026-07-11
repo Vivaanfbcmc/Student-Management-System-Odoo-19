@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_student" model="ir.sequence">
+
+        <field name="name">Student Roll Number</field>
+        <field name="code">student.student</field>
+        <field name="prefix">s/</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+
+    </record>
+
+    <record id="seq_teacher" model="ir.sequence">
+        <field name="name">Teacher Employee ID</field>
+        <field name="code">school.teacher</field>
+        <field name="prefix">TCH/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+
+</odoo>

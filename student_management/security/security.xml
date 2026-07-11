@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MODULE CATEGORY -->
+    <record id="module_category_student_management" model="ir.module.category">
+        <field name="name">Student Management</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- PRIVILEGE -->
+    <record id="privilege_student_management" model="res.groups.privilege">
+        <field name="name">Student Management</field>
+        <field name="category_id" ref="module_category_student_management"/>
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- GROUPS -->
+
+    <record id="group_student" model="res.groups">
+        <field name="name">Student</field>
+        <field name="privilege_id" ref="privilege_student_management"/>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_teacher" model="res.groups">
+        <field name="name">Teacher</field>
+        <field name="privilege_id" ref="privilege_student_management"/>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="group_librarian" model="res.groups">
+        <field name="name">Librarian</field>
+        <field name="privilege_id" ref="privilege_student_management"/>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="group_principal" model="res.groups">
+        <field name="name">Principal</field>
+        <field name="privilege_id" ref="privilege_student_management"/>
+        <field name="sequence">4</field>
+        <field name="implied_ids" eval="[(4, ref('group_teacher'))]"/>
+    </record>
+
+    <record id="group_school_admin" model="res.groups">
+        <field name="name">School Administrator</field>
+        <field name="privilege_id" ref="privilege_student_management"/>
+        <field name="sequence">5</field>
+        <field name="implied_ids" eval="[(4, ref('group_principal')), (4, ref('group_librarian'))]"/>
+    </record>
+
+
+    <!-- RECORD RULES -->
+
+    <!-- Student Rules -->
+
+    <record id="rule_student_see_own_profile" model="ir.rule">
+        <field name="name">Students: see only own profile</field>
+        <field name="model_id" ref="model_student_student"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_see_own_marks" model="ir.rule">
+        <field name="name">Students: see only own marks</field>
+        <field name="model_id" ref="model_student_mark"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('student_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_see_own_class" model="ir.rule">
+        <field name="name">Students: see only own class</field>
+        <field name="model_id" ref="model_school_class"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('student_ids.email', 'in', [user.email])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_see_own_timetable" model="ir.rule">
+        <field name="name">Students: see only own division timetable</field>
+        <field name="model_id" ref="model_school_timetable"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('division_id.student_ids.email', 'in', [user.email])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_see_own_timetable_slots" model="ir.rule">
+        <field name="name">Students: see only own division timetable slots</field>
+        <field name="model_id" ref="model_school_timetable_slot"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('division_id.student_ids.email', 'in', [user.email])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_teacher_see_own_timetable_slots" model="ir.rule">
+        <field name="name">Teachers: see only their own timetable slots</field>
+        <field name="model_id" ref="model_school_timetable_slot"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('teacher_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_timetable_log" model="ir.rule">
+        <field name="name">Students: see logs for their division slots only</field>
+        <field name="model_id" ref="model_school_timetable_log"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">[('division_id.student_ids.email', 'in', [user.email])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_teacher_timetable_log" model="ir.rule">
+        <field name="name">Teachers: see and write logs for their own slots</field>
+        <field name="model_id" ref="model_school_timetable_log"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('teacher_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_student_see_own_issues" model="ir.rule">
+        <field name="name">Students: see only own book issues</field>
+        <field name="model_id" ref="model_library_issue"/>
+        <field name="groups" eval="[(4, ref('group_student'))]"/>
+        <field name="domain_force">['|', ('partner_id', '=', user.partner_id.id), ('student_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <!-- Teacher Rules -->
+
+    <record id="rule_teacher_see_own_students" model="ir.rule">
+        <field name="name">Teachers: see only students in their divisions</field>
+        <field name="model_id" ref="model_student_student"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('division_id.class_teacher_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_teacher_see_own_profile" model="ir.rule">
+        <field name="name">Teachers: see only own teacher profile</field>
+        <field name="model_id" ref="model_school_teacher"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_teacher_see_own_classes" model="ir.rule">
+        <field name="name">Teachers: see only their assigned classes</field>
+        <field name="model_id" ref="model_school_class"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('division_ids.class_teacher_id.email', '=', user.email)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_teacher_see_own_issues" model="ir.rule">
+        <field name="name">Teachers: see only own book issues</field>
+        <field name="model_id" ref="model_library_issue"/>
+        <field name="groups" eval="[(4, ref('group_teacher'))]"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Principal Rules — unrestricted access -->
+
+    <record id="rule_principal_all_students" model="ir.rule">
+        <field name="name">Principal: see all students</field>
+        <field name="model_id" ref="model_student_student"/>
+        <field name="groups" eval="[(4, ref('group_principal'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_principal_all_classes" model="ir.rule">
+        <field name="name">Principal: see all classes</field>
+        <field name="model_id" ref="model_school_class"/>
+        <field name="groups" eval="[(4, ref('group_principal'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_principal_all_teachers" model="ir.rule">
+        <field name="name">Principal: see all teachers</field>
+        <field name="model_id" ref="model_school_teacher"/>
+        <field name="groups" eval="[(4, ref('group_principal'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Librarian Rules -->
+
+    <record id="rule_librarian_all_books" model="ir.rule">
+        <field name="name">Librarians: access all library books</field>
+        <field name="model_id" ref="model_library_book"/>
+        <field name="groups" eval="[(4, ref('group_librarian'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="rule_librarian_all_issues" model="ir.rule">
+        <field name="name">Librarians: access all library issues</field>
+        <field name="model_id" ref="model_library_issue"/>
+        <field name="groups" eval="[(4, ref('group_librarian'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

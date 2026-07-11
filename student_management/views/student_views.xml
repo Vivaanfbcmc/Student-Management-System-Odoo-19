@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- STUDENT LIST VIEW -->
+    <record id="view_student_list" model="ir.ui.view">
+        <field name="name">student.student.list</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <list string="Students" decoration-success="result == 'pass'" decoration-danger="result == 'fail'" decoration-muted="active == False">
+                <field name="roll_number" optional="show"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="email"/>
+                <field name="class_id" optional="show"/>
+                <field name="division_id" optional="show"/>
+                <field name="subject_count" string="Subjects"/>
+                <field name="total_percentage" string="Overall %" widget="progressbar" options="{'editable': False}"/>
+                <field name="grade"/>
+                <field name="result" widget="badge" decoration-success="result == 'pass'" decoration-danger="result == 'fail'"/>
+                <field name="active" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- STUDENT FORM VIEW -->
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.student.form</field>
+        <field name="model">student.student</field>             
+        <field name="arch" type="xml">
+            <form string="Student">
+                <header>
+                    <button name="action_request_membership" type="object" string="Request Library Membership" class="btn-primary" invisible="membership_state != 'none'"/>
+                    <button name="action_approve_membership" type="object" string="Approve Membership" class="btn-success" groups="student_management.group_librarian,student_management.group_school_admin" invisible="membership_state != 'requested'"/>
+                    <field name="membership_state" widget="statusbar" statusbar_visible="none,requested,member"/>
+                    <field name="result" widget="statusbar" statusbar_visible="pass,fail"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <field name="photo" widget="image" class="oe_avatar" options="{'preview_image': 'photo', 'size': [90, 90]}"/>
+                        <h1>
+                            <field name="name" required="1" placeholder="Student Full Name"/>
+                        </h1>
+                        <h4>
+                            <field name="roll_number" readonly="1"/>
+                        </h4>
+                    </div>
+                    <group string="Personal Information">
+                        <group>
+                            <field name="date_of_birth" required="1"/>
+                            <field name="age" readonly="1"/>
+                            <field name="email" required="1" placeholder="student@example.com"/>
+                        </group>
+                        <group>
+                            <field name="address" placeholder="Residential address..."/>
+                            <field name="class_id" options="{'no_create': True}" required="1"/>
+                            <field name="division_id" options="{'no_create': True}" required="1"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+
+                    <field name="subject_ids" invisible="1"/>
+                    <field name="allowed_class_ids" invisible="1"/>
+                    <notebook>
+                        <page string="Marks and Percentages" name="marks">
+                            <field name="mark_ids">
+                                <list editable="bottom">
+                                    <field name="subject_id" options="{'no_create': True, 'no_open': True}" column_readonly="1"/>
+                                    <field name="max_marks" readonly="1"/>
+                                    <field name="marks_obtained" required="1"/>
+                                    <field name="percentage"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Results Summary" name="results">
+                            <group>
+                                <group string="Academic Performance">
+                                    <field name="total_percentage" readonly="1"/>
+                                    <field name="grade" readonly="1"/>
+                                    <field name="result" readonly="1" widget="badge" decoration-success="result == 'pass'" decoration-danger="result == 'fail'"/>
+                                </group>
+
+                                <group string="Enrollment">
+                                    <field name="subject_count" readonly="1" string="No. of Subjects Enrolled"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Library" name="library">
+                            <field name="issue_ids" readonly="1">
+                                <list>
+                                    <field name="book_id"/>
+                                    <field name="issue_date"/>
+                                    <field name="due_date"/>
+                                    <field name="return_date"/>
+                                    <field name="state" widget="badge"
+                                        decoration-success="state == 'returned'"
+                                        decoration-danger="state == 'overdue'"
+                                        decoration-info="state == 'issued'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- SEARCH VIEW -->
+    <record id="view_student_search" model="ir.ui.view">
+        <field name="name">student.student.search</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <field name="name" string="Student Name"/>
+                <field name="email"/>
+                <field name="roll_number"/>
+                <field name="class_id" options="{'no_create': True}" required="1" domain="[('id', 'in', allowed_class_ids)]"/>
+                <field name="subject_ids" string="Subject"/>
+                <filter name="passed" string="Passed" domain="[('result', '=', 'pass')]"/>
+                <filter name="failed" string="Failed" domain="[('result', '=', 'fail')]"/>
+                <separator/>
+                <filter name="active" string="Active" domain="[('active', '=', True)]"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter name="group_grade" string="Grade" context="{'group_by': 'grade'}"/>
+                <filter name="group_result" string="Result" context="{'group_by': 'result'}"/>
+                <filter name="group_class" string="Class" context="{'group_by': 'class_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- STUDENT KANBAN VIEW -->
+    <record id="view_student_kanban" model="ir.ui.view">
+        <field name="name">student.student.kanban</field>
+        <field name="model">student.student</field>
+        <field name="arch" type="xml">
+            <kanban string="Students" default_group_by="result" class="o_kanban_small_column" sample="1">
+                <field name="name"/>
+                <field name="roll_number"/>
+                <field name="age"/>
+                <field name="email"/>
+                <field name="class_id"/>
+                <field name="grade"/>
+                <field name="result"/>
+                <field name="total_percentage"/>
+                <field name="photo"/>
+                <field name="active"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex align-items-center gap-3 p-2 oe_kanban_global_click">
+                            <!-- Avatar -->
+                            <div style="flex-shrink:0; width:52px; height:52px; border-radius:50%; overflow:hidden; border:2px solid #dee2e6;">
+                                <img t-att-src="'/web/image/student.student/' + record.id.raw_value + '/photo'"
+                                    alt="Photo"
+                                    style="width:100%; height:100%; object-fit:cover;"/>
+                            </div>
+                            <!-- Details -->
+                            <div class="d-flex flex-column" style="min-width:0;">
+                                <strong class="text-truncate fs-6">
+                                    <field name="name"/>
+                                </strong>
+                                <small class="text-muted">
+                                    <field name="roll_number"/>
+                                    &amp;nbsp;·&amp;nbsp;
+                                    <field name="class_id"/>
+                                </small>
+                                <div class="d-flex align-items-center gap-2 mt-1">
+                                    <span class="badge text-bg-secondary" style="font-size:11px;">
+                                        <field name="grade"/>
+                                    </span>
+                                    <span style="font-size:12px; color:#555;">
+                                        <t t-esc="record.total_percentage.raw_value.toFixed(1)"/>%
+                                    </span>
+                                    <field name="result" widget="badge"
+                                        decoration-success="result == 'pass'"
+                                        decoration-danger="result == 'fail'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_student_list" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">student.student</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'list',   'view_id': ref('view_student_list')}),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_student_kanban')}),
+            (0, 0, {'view_mode': 'form',   'view_id': ref('view_student_form')})
+        ]"/>
+        <field name="search_view_id" ref="view_student_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first student!
+            </p>
+            <p>
+                Create student records, enrol them in subjects,
+                enter marks and let the system calculate grades.
+            </p>
+        </field>
+    </record>
+</odoo>
